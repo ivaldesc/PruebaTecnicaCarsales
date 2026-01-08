@@ -1,0 +1,59 @@
+
+<div class="episode-container">
+    <h1>Detalle del Episodio</h1>
+
+    @if(episode$ | async; as episode) {
+        <form>
+        <div class="episode-row">
+            <div class="input-group">
+                <input type="text" [value]="episode.episode.name" placeholder=" " readonly>
+                <label>Nombre del Episodio</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" [value]="episode.episode.air_date" placeholder=" " readonly>
+                <label>Fecha de emisión</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" [value]="episode.episode.episode" placeholder=" " readonly>
+                <label>Episodio</label>
+            </div>
+        </div>
+    </form>
+
+    <div class="table-title">Personajes</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Especie</th>
+                <th>Género</th>
+                <th>Origen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (personaje of episode.charactersDetails; track personaje.id) {
+            <tr>
+                <td><img [src]="personaje.image" [alt]="personaje.name" class="character-image"></td>
+                <td>{{personaje.name}}</td>
+                <td>{{personaje.status}}</td>
+                <td>{{personaje.species}}</td>
+                <td>{{personaje.gender}}</td>
+                <td>{{personaje.origin.name}}</td>
+            </tr>
+        } @empty {
+            <tr>
+                <td colspan="4">No hay personajes disponibles.</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    } @else {
+        <p>Cargando detalles del episodio...</p>
+    }
+</div>
+<br>
+<button class="button button--secondary" (click)="goBack()">Go Back</button>

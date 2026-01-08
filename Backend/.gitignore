@@ -1,0 +1,37 @@
+# Compilados
+bin/
+obj/
+dist/
+out-tsc/
+coverage/
+
+# Node modules
+node_modules/
+
+# Archivos de usuario de Visual Studio
+*.user
+*.suo
+*.vs/
+*.vscode/
+
+# Configuración de publicación
+publish/
+
+# Dependencias de NuGet
+*.nupkg
+packages/
+
+# Archivos temporales
+*.log
+*.tmp
+
+# JetBrains Rider
+.idea/
+
+# Configuración local de launch
+*.vsconfig
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

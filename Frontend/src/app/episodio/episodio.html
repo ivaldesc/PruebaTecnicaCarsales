@@ -1,0 +1,36 @@
+<h2>Lista de Episodios</h2>
+
+
+<div *ngIf="isLoading()">Cargando episodios...</div>
+<div *ngIf="errorMessage" style="color:red">{{ errorMessage }}</div>
+
+
+<table *ngIf="!isLoading() && episodios.length" border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Fecha de emisión</th>
+      <th>Episodio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ep of episodios">
+      <td>{{ ep.id }}</td>
+      <td>{{ ep.name }}</td>
+      <td>{{ ep.air_date }}</td>
+      <td>{{ ep.episode }}</td>
+      <td class="text-center">
+        <button class="button button--details" (click)="viewDetails(ep.id)">Detalle</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="pagination" *ngIf="!isLoading() && episodios.length" style="margin-top: 20px;">
+  <button class="button" (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+  <span class="page-info" > Página {{ currentPage }} de {{ totalPages }} </span>
+  <button class="button" (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+</div>
