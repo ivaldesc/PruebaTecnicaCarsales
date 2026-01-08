@@ -4,11 +4,13 @@ using PruebaTecnicaCarsales.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<Utils>();
+
+var clientBaseUrl = builder.Configuration["Client:BaseUrl"];
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AngularAppPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:4200") // Angular app URL
+        policy.WithOrigins(clientBaseUrl) //Se deja opcion http por defecto
        .AllowAnyHeader()
        .AllowAnyMethod();
 
